@@ -5,6 +5,7 @@
  */
 package bingo3;
 
+import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +20,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
@@ -42,8 +45,6 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Label label_ultima_pedra_sorteada;
     @FXML
-    private Pane pn_patrocinadores;
-    @FXML
     private Pane pn_ordem_sorteio;
     @FXML
     private TextArea ta_sequencia_sorteio;
@@ -51,8 +52,6 @@ public class FXMLDocumentController implements Initializable {
     private Pane pn_cartela;
     @FXML
     private ToggleButton btn_01;
-    @FXML
-    private Pane pn_menu;
     @FXML
     private Label label_sorteadas;
     @FXML
@@ -207,11 +206,15 @@ public class FXMLDocumentController implements Initializable {
     private ToggleButton btn_61;
     @FXML
     private ToggleButton btn_14;
+    @FXML
+    private ImageView image_anuncios;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        ta_sequencia_sorteio.setWrapText(true);
+        File file = new File("C:\\bingo\\img\\foto.jpg");
+        Image image = new Image(file.toURI().toString());
+        image_anuncios.setImage(image);
     }
 
     @FXML
@@ -226,13 +229,13 @@ public class FXMLDocumentController implements Initializable {
             listaNumerosSorteados.add(textoBotao);
             numerosSorteados += textoBotao + " ";
             label_ultima_pedra_sorteada.setText(pedraClicada);
-            button.getStyleClass().add("black-button");
+            button.getStyleClass().add("red-button");
             contador++;
         } else {
             listaNumerosSorteados.remove(textoBotao);
             textoBotao = "-" + textoBotao;
             numerosSorteados += textoBotao + " ";
-            button.getStyleClass().removeAll("black-button");
+            button.getStyleClass().removeAll("red-button");
             if (contador > 0) {
                 contador--;
             }
@@ -249,7 +252,7 @@ public class FXMLDocumentController implements Initializable {
 
         Alert alert = new Alert(AlertType.CONFIRMATION, null, ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
         alert.setTitle("Reiniciar Jogo");
-        alert.setHeaderText("Deseja  realmente reiniciar o placar do jogo?");
+        alert.setHeaderText("Deseja realmente reiniciar o placar do jogo?");
         alert.showAndWait();
 
         if (alert.getResult() == ButtonType.YES) {
@@ -282,81 +285,81 @@ public class FXMLDocumentController implements Initializable {
     }
     
     private void setarBotoesEstadoOriginal() {
-        btn_01.getStyleClass().removeAll("black-button", "white-button");
-        btn_02.getStyleClass().removeAll("black-button", "white-button");
-        btn_03.getStyleClass().removeAll("black-button", "white-button");
-        btn_04.getStyleClass().removeAll("black-button", "white-button");
-        btn_05.getStyleClass().removeAll("black-button", "white-button");
-        btn_06.getStyleClass().removeAll("black-button", "white-button");
-        btn_07.getStyleClass().removeAll("black-button", "white-button");
-        btn_08.getStyleClass().removeAll("black-button", "white-button");
-        btn_09.getStyleClass().removeAll("black-button", "white-button");
-        btn_10.getStyleClass().removeAll("black-button", "white-button");
-        btn_11.getStyleClass().removeAll("black-button", "white-button");
-        btn_12.getStyleClass().removeAll("black-button", "white-button");
-        btn_13.getStyleClass().removeAll("black-button", "white-button");
-        btn_14.getStyleClass().removeAll("black-button", "white-button");
-        btn_15.getStyleClass().removeAll("black-button", "white-button");
-        btn_16.getStyleClass().removeAll("black-button", "white-button");
-        btn_17.getStyleClass().removeAll("black-button", "white-button");
-        btn_18.getStyleClass().removeAll("black-button", "white-button");
-        btn_19.getStyleClass().removeAll("black-button", "white-button");
-        btn_20.getStyleClass().removeAll("black-button", "white-button");
-        btn_21.getStyleClass().removeAll("black-button", "white-button");
-        btn_22.getStyleClass().removeAll("black-button", "white-button");
-        btn_23.getStyleClass().removeAll("black-button", "white-button");
-        btn_24.getStyleClass().removeAll("black-button", "white-button");
-        btn_25.getStyleClass().removeAll("black-button", "white-button");
-        btn_26.getStyleClass().removeAll("black-button", "white-button");
-        btn_27.getStyleClass().removeAll("black-button", "white-button");
-        btn_28.getStyleClass().removeAll("black-button", "white-button");
-        btn_29.getStyleClass().removeAll("black-button", "white-button");
-        btn_30.getStyleClass().removeAll("black-button", "white-button");
-        btn_31.getStyleClass().removeAll("black-button", "white-button");
-        btn_32.getStyleClass().removeAll("black-button", "white-button");
-        btn_33.getStyleClass().removeAll("black-button", "white-button");
-        btn_34.getStyleClass().removeAll("black-button", "white-button");
-        btn_35.getStyleClass().removeAll("black-button", "white-button");
-        btn_36.getStyleClass().removeAll("black-button", "white-button");
-        btn_37.getStyleClass().removeAll("black-button", "white-button");
-        btn_38.getStyleClass().removeAll("black-button", "white-button");
-        btn_39.getStyleClass().removeAll("black-button", "white-button");
-        btn_40.getStyleClass().removeAll("black-button", "white-button");
-        btn_41.getStyleClass().removeAll("black-button", "white-button");
-        btn_42.getStyleClass().removeAll("black-button", "white-button");
-        btn_43.getStyleClass().removeAll("black-button", "white-button");
-        btn_44.getStyleClass().removeAll("black-button", "white-button");
-        btn_45.getStyleClass().removeAll("black-button", "white-button");
-        btn_46.getStyleClass().removeAll("black-button", "white-button");
-        btn_47.getStyleClass().removeAll("black-button", "white-button");
-        btn_48.getStyleClass().removeAll("black-button", "white-button");
-        btn_49.getStyleClass().removeAll("black-button", "white-button");
-        btn_50.getStyleClass().removeAll("black-button", "white-button");
-        btn_51.getStyleClass().removeAll("black-button", "white-button");
-        btn_52.getStyleClass().removeAll("black-button", "white-button");
-        btn_53.getStyleClass().removeAll("black-button", "white-button");
-        btn_54.getStyleClass().removeAll("black-button", "white-button");
-        btn_55.getStyleClass().removeAll("black-button", "white-button");
-        btn_56.getStyleClass().removeAll("black-button", "white-button");
-        btn_57.getStyleClass().removeAll("black-button", "white-button");
-        btn_58.getStyleClass().removeAll("black-button", "white-button");
-        btn_59.getStyleClass().removeAll("black-button", "white-button");
-        btn_60.getStyleClass().removeAll("black-button", "white-button");
-        btn_61.getStyleClass().removeAll("black-button", "white-button");
-        btn_62.getStyleClass().removeAll("black-button", "white-button");
-        btn_63.getStyleClass().removeAll("black-button", "white-button");
-        btn_64.getStyleClass().removeAll("black-button", "white-button");
-        btn_65.getStyleClass().removeAll("black-button", "white-button");
-        btn_66.getStyleClass().removeAll("black-button", "white-button");
-        btn_67.getStyleClass().removeAll("black-button", "white-button");
-        btn_68.getStyleClass().removeAll("black-button", "white-button");
-        btn_69.getStyleClass().removeAll("black-button", "white-button");
-        btn_70.getStyleClass().removeAll("black-button", "white-button");
-        btn_71.getStyleClass().removeAll("black-button", "white-button");
-        btn_72.getStyleClass().removeAll("black-button", "white-button");
-        btn_73.getStyleClass().removeAll("black-button", "white-button");
-        btn_74.getStyleClass().removeAll("black-button", "white-button");
-        btn_75.getStyleClass().removeAll("black-button", "white-button");
+        btn_01.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_02.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_03.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_04.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_05.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_06.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_07.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_08.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_09.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_10.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_11.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_12.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_13.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_14.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_15.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_16.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_17.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_18.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_19.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_20.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_21.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_22.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_23.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_24.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_25.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_26.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_27.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_28.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_29.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_30.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_31.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_32.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_33.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_34.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_35.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_36.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_37.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_38.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_39.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_40.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_41.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_42.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_43.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_44.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_45.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_46.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_47.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_48.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_49.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_50.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_51.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_52.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_53.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_54.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_55.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_56.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_57.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_58.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_59.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_60.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_61.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_62.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_63.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_64.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_65.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_66.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_67.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_68.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_69.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_70.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_71.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_72.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_73.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_74.getStyleClass().removeAll("black-button", "white-button", "red-button");
+        btn_75.getStyleClass().removeAll("black-button", "white-button", "red-button");
     }
 
 }

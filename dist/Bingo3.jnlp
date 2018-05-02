@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Bingo3.jar" size="22020" download="eager" />
+    <jar href="Bingo3.jar" size="22461" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Bingo3" >
     <param name="requiredFXVersion" value="8.0+"/>
