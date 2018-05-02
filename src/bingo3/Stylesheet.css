@@ -1,0 +1,13 @@
+.red-button {
+    -fx-background-color: red;
+}
+
+.black-button {
+    -fx-background-color: black;
+    -fx-text-fill: white;
+}
+
+.white-button {
+    -fx-background-color: white;
+    -fx-text-fill: black;
+}
