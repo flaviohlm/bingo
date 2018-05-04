@@ -263,6 +263,7 @@ public class FXMLDocumentController implements Initializable {
             label_sorteadas.setText("0");
             label_restantes.setText("75");
             ta_sequencia_sorteio.setText("");
+            
             //SETA OS BOTOES AO ESTADO DE ORIGEM
             setarBotoesEstadoOriginal();
         }
