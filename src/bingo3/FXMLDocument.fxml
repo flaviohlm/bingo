@@ -11,7 +11,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
 <AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bingo3.FXMLDocumentController">
     <children>
       <HBox prefHeight="700.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -39,7 +38,7 @@
                         <StackPane prefHeight="150.0" prefWidth="200.0" style="-fx-background-color: #000051;">
                            <children>
                               <Circle fx:id="shape_00" fill="WHITE" radius="139.0" stroke="#ffffff00" strokeType="INSIDE" StackPane.alignment="CENTER" />
-                              <Label fx:id="label_ultima_pedra_sorteada" alignment="CENTER" contentDisplay="CENTER" prefHeight="138.0" prefWidth="242.0" textAlignment="CENTER" textFill="#000051" StackPane.alignment="CENTER">
+                              <Label fx:id="label_ultima_pedra_sorteada" alignment="CENTER" contentDisplay="CENTER" prefHeight="138.0" prefWidth="242.0" textAlignment="CENTER" textFill="RED" StackPane.alignment="CENTER">
                                  <font>
                                     <Font name="Arial Bold" size="100.0" />
                                  </font>
@@ -80,7 +79,7 @@
                            </children></Pane>
                         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #000051;" GridPane.columnIndex="1">
                            <children>
-                              <BorderPane prefHeight="200.0" prefWidth="200.0">
+                              <BorderPane fx:id="panel_anunciantes" prefHeight="200.0" prefWidth="200.0">
                                  <top>
                                     <Label contentDisplay="CENTER" prefHeight="30.0" prefWidth="69.0" text="Anúncios" textAlignment="CENTER" textFill="WHITE" BorderPane.alignment="CENTER">
                                        <font>
@@ -508,13 +507,23 @@
                      </center>
                   </BorderPane>
                   <BorderPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #000051;" GridPane.rowIndex="2">
-                     <bottom>
-                        <Button fx:id="btn_reiniciar" alignment="BASELINE_CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#handleReiniciarJogoAction" text="Reiniciar Jogo" BorderPane.alignment="CENTER">
-                           <BorderPane.margin>
-                              <Insets bottom="10.0" />
-                           </BorderPane.margin>
-                        </Button>
-                     </bottom>
+                     <center>
+                        <GridPane BorderPane.alignment="CENTER">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <Pane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <Button fx:id="btn_reiniciar" alignment="CENTER" contentDisplay="CENTER" layoutX="550.0" layoutY="11.0" mnemonicParsing="false" onAction="#handleReiniciarJogoAction" text="Reiniciar Jogo" />                                    
+                                 </children>
+                              </Pane>
+                           </children>
+                        </GridPane>
+                     </center>
                   </BorderPane>
                </children>
             </GridPane>

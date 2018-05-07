@@ -5,14 +5,23 @@
  */
 package bingo3;
 
+import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
+import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
@@ -22,9 +31,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
+import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
+import javax.swing.JLabel;
+import javax.swing.Timer;
 
 /**
  *
@@ -35,6 +50,12 @@ public class FXMLDocumentController implements Initializable {
     public List<String> listaNumerosSorteados = new ArrayList<>();
     public Integer contador = 0;
     public String numerosSorteados = "";
+
+    public String path = "C:\\bingo\\images";
+    public List<String> listaImages = new ArrayList<>();
+    public JLabel pic;
+    public Timer tm;
+    public int x = 0;
 
     @FXML
     private GridPane grid_geral;
@@ -208,13 +229,30 @@ public class FXMLDocumentController implements Initializable {
     private ToggleButton btn_14;
     @FXML
     private ImageView image_anuncios;
+    @FXML
+    private BorderPane panel_anunciantes;
+    @FXML
+    private Button btn_adicionar_anunciates;
+    @FXML
+    private Button btn_anunciantes;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        File file = new File("C:\\bingo\\img\\foto.jpg");
-        Image image = new Image(file.toURI().toString());
-        image_anuncios.setImage(image);
+        this.lerImagensDiretorio();
+        if (!this.listaImages.isEmpty()) {
+            tm = new Timer(3000, new ActionListener() {
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    SetImageSize(x);
+                    x += 1;
+                    if (x >= listaImages.size()) {
+                        x = 0;
+                    }
+                }
+            });
+            tm.start();
+        }
     }
 
     @FXML
@@ -246,7 +284,7 @@ public class FXMLDocumentController implements Initializable {
         label_restantes.setText(pedrasRestantes.toString());
         ta_sequencia_sorteio.setText(numerosSorteados);
     }
-    
+
     @FXML
     private void handleReiniciarJogoAction(ActionEvent event) {
 
@@ -263,7 +301,7 @@ public class FXMLDocumentController implements Initializable {
             label_sorteadas.setText("0");
             label_restantes.setText("75");
             ta_sequencia_sorteio.setText("");
-            
+
             //SETA OS BOTOES AO ESTADO DE ORIGEM
             setarBotoesEstadoOriginal();
         }
@@ -284,7 +322,7 @@ public class FXMLDocumentController implements Initializable {
         }
         return "";
     }
-    
+
     private void setarBotoesEstadoOriginal() {
         btn_01.getStyleClass().removeAll("black-button", "white-button", "red-button");
         btn_02.getStyleClass().removeAll("black-button", "white-button", "red-button");
@@ -363,4 +401,50 @@ public class FXMLDocumentController implements Initializable {
         btn_75.getStyleClass().removeAll("black-button", "white-button", "red-button");
     }
 
+    //METODOS DA LEITURA DE IMAGENS
+    public void lerImagensDiretorio() {
+        //1 - Verifica se existe o diretorio de imagens dos anuncios. Caso nao exista, cria-se.        
+        File caminhoImagensAnunciantes = new File(path);
+        if (!caminhoImagensAnunciantes.exists()) {
+            caminhoImagensAnunciantes.mkdirs();
+        }
+
+        //2 - Faz a leitura dos arquivos do diretorio
+        for (File imagem : caminhoImagensAnunciantes.listFiles()) {
+            //System.out.println(name);
+            if (!imagem.getName().equals("Thumbs.db")) {
+                listaImages.add(path + "\\" + imagem.getName());
+            }
+        }
+    }
+
+    public void SetImageSize(int i) {
+        try {
+            File file = new File(listaImages.get(i));
+            Image image = new Image(file.toURI().toString());
+            image_anuncios.setImage(image);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void handleAnunciatesAction(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("FXMLAnuncios.fxml"));
+            /* 
+         * if "fx:controller" is not set in fxml
+         * fxmlLoader.setController(NewWindowController);
+             */
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            //stage.setTitle("New Window");
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
+    }
 }
