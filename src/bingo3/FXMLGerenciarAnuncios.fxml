@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bingo3.FXMLGerenciarAnunciosController">
+   <children>
+      <VBox alignment="TOP_CENTER" fillWidth="false" prefHeight="700.0" prefWidth="1024.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <Pane prefHeight="130.0" prefWidth="1024.0" VBox.vgrow="ALWAYS">
+               <children>
+                  <Button layoutX="932.0" layoutY="20.0" mnemonicParsing="false" text="Adicionar" onAction='#addAnuncio'/>
+               </children>
+            </Pane>
+            <ScrollPane fx:id="root" hbarPolicy="NEVER" prefHeight="700.0" prefWidth="1024.0" vbarPolicy="ALWAYS" HBox.hgrow="ALWAYS">
+               <content>
+                  <TilePane fx:id="tile" hgap="10.0" prefColumns="0" prefHeight="28.0" prefRows="0" prefWidth="35.0" style="-fx-padding: 5 5 5 5;" vgap="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+               </content>
+            </ScrollPane>
+         </children>
+     </VBox>
+   </children>
+</AnchorPane>

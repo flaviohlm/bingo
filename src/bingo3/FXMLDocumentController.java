@@ -7,17 +7,15 @@ package bingo3;
 
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -35,8 +33,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.shape.Circle;
-import javafx.stage.FileChooser;
-import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
 import javax.swing.JLabel;
 import javax.swing.Timer;
@@ -232,27 +228,14 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private BorderPane panel_anunciantes;
     @FXML
-    private Button btn_adicionar_anunciates;
-    @FXML
     private Button btn_anunciantes;
+    @FXML
+    private ToggleButton btn_fullscreen_main;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        this.lerImagensDiretorio();
-        if (!this.listaImages.isEmpty()) {
-            tm = new Timer(3000, new ActionListener() {
-                @Override
-                public void actionPerformed(java.awt.event.ActionEvent e) {
-                    SetImageSize(x);
-                    x += 1;
-                    if (x >= listaImages.size()) {
-                        x = 0;
-                    }
-                }
-            });
-            tm.start();
-        }
+        iniciaAnunciantes();        
     }
 
     @FXML
@@ -307,6 +290,68 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
+    @FXML
+    private void handleAnunciatesAction(ActionEvent event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("FXMLGerenciarAnuncios.fxml"));
+            /* 
+         * if "fx:controller" is not set in fxml
+         * fxmlLoader.setController(NewWindowController);
+             */
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            //stage.setTitle("New Window");
+            stage.setScene(scene);
+            stage.show();
+           
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
+    }
+    
+    @FXML
+    private void handleAnunciatesTelaCheiaAction(Event event) {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("FXMLAnuncios.fxml"));
+            
+            Scene scene = new Scene(fxmlLoader.load());
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.setFullScreen(true);
+            stage.show();
+           
+        } catch (IOException e) {
+            Logger logger = Logger.getLogger(getClass().getName());
+            logger.log(Level.SEVERE, "Failed to create new Window.", e);
+        }
+    }
+
+    
+    public void iniciaAnunciantes(){
+        this.lerImagensDiretorio();
+        if (!this.listaImages.isEmpty()) {
+            tm = new Timer(3000, new ActionListener() {
+                @Override
+                public void actionPerformed(java.awt.event.ActionEvent e) {
+                    SetImageSize(x);
+                    x += 1;
+                    if (x >= listaImages.size()) {
+                        x = 0;
+                    }
+                }
+            });
+            tm.start();
+        }
+        
+        URL urlIcon = getClass().getResource("/pedras/fullscreen_on.png");
+        Image image = new Image(urlIcon.toString());
+        final ImageView iv = new ImageView(image);
+        this.btn_fullscreen_main.setGraphic(iv);
+    }
+    
     public String retornaLetra(String num) {
         Integer numero = Integer.parseInt(num);
         if (numero > 0 && numero <= 15) {
@@ -428,23 +473,5 @@ public class FXMLDocumentController implements Initializable {
         }
     }
 
-    @FXML
-    private void handleAnunciatesAction(ActionEvent event) {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("FXMLAnuncios.fxml"));
-            /* 
-         * if "fx:controller" is not set in fxml
-         * fxmlLoader.setController(NewWindowController);
-             */
-            Scene scene = new Scene(fxmlLoader.load());
-            Stage stage = new Stage();
-            //stage.setTitle("New Window");
-            stage.setScene(scene);
-            stage.show();
-        } catch (IOException e) {
-            Logger logger = Logger.getLogger(getClass().getName());
-            logger.log(Level.SEVERE, "Failed to create new Window.", e);
-        }
-    }
+    
 }

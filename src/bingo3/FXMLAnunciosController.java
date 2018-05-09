@@ -6,15 +6,22 @@
 package bingo3;
 
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseButton;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 
@@ -30,14 +37,30 @@ public class FXMLAnunciosController implements Initializable {
     public JLabel pic;
     public Timer tm;
     public int x = 0;
+    public Boolean fullscreen = true;
     @FXML
     private ImageView image_anuncios;
-    
+    @FXML
+    private ToggleButton btn_fullscreen_anuncios;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        this.iniciaAnunciantes();
+    }
+
+    @FXML
+    private void handleAnunciatesTelaCheiaAction(Event event) {
+        fullscreen = !fullscreen;
+        
+        Stage stage;
+        stage = (Stage) this.image_anuncios.getScene().getWindow();
+        stage.setFullScreen(fullscreen);        
+    }
+    
+    public void iniciaAnunciantes() {
         this.lerImagensDiretorio();
         if (!this.listaImages.isEmpty()) {
             tm = new Timer(3000, new ActionListener() {
@@ -52,6 +75,10 @@ public class FXMLAnunciosController implements Initializable {
             });
             tm.start();
         }
+        
+        URL urlIcon = getClass().getResource("/pedras/fullscreen_off.png");
+        Image image = new Image(urlIcon.toString());
+        final ImageView iv = new ImageView(image);        
     }
 
     public void lerImagensDiretorio() {
@@ -78,6 +105,6 @@ public class FXMLAnunciosController implements Initializable {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }    
-    
+    }
+
 }
