@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="700.0" prefWidth="1024.0" style="-fx-background-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ie.com.petruchio.anuncios.FXMLAnunciosController">
+   <children>
+      <HBox alignment="CENTER" prefHeight="700.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <StackPane HBox.hgrow="ALWAYS">
+               <children>                  
+                  <ImageView fx:id="image_anuncios" fitHeight="660.0" fitWidth="964.0" pickOnBounds="true" preserveRatio="true" StackPane.alignment="CENTER" onMouseClicked='#handleAnunciatesTelaCheiaAction'/>
+               </children></StackPane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
