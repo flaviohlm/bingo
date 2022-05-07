@@ -1,7 +1,7 @@
-/Users/flavio/NetBeansProjects/Bingo4/src/main/java/ie/com/petruchio/anuncios/FXMLAnunciosController.java
-/Users/flavio/NetBeansProjects/Bingo4/src/main/java/ie/com/petruchio/anuncios/FXMLGerenciarAnunciosController.java
-/Users/flavio/NetBeansProjects/Bingo4/src/main/java/ie/com/petruchio/home/FXMLDocumentController.java
-/Users/flavio/NetBeansProjects/Bingo4/src/main/java/ie/com/petruchio/bingo4/FXMLController.java
-/Users/flavio/NetBeansProjects/Bingo4/src/main/java/ie/com/petruchio/utils/BingoUtils.java
-/Users/flavio/NetBeansProjects/Bingo4/src/main/java/ie/com/petruchio/bingo4/MainApp.java
-/Users/flavio/NetBeansProjects/Bingo4/src/main/java/ie/com/petruchio/home/UtilController.java
+/Users/flavio/NetBeansProjects/Bingo/src/main/java/ie/com/petruchio/bingo/HomeController.java
+/Users/flavio/NetBeansProjects/Bingo/src/main/java/ie/com/petruchio/utils/BingoUtils.java
+/Users/flavio/NetBeansProjects/Bingo/src/main/java/module-info.java
+/Users/flavio/NetBeansProjects/Bingo/src/main/java/ie/com/petruchio/utils/FxmlUtils.java
+/Users/flavio/NetBeansProjects/Bingo/src/main/java/ie/com/petruchio/bingo/App.java
+/Users/flavio/NetBeansProjects/Bingo/src/main/java/ie/com/petruchio/bingo/AdsController.java
+/Users/flavio/NetBeansProjects/Bingo/src/main/java/ie/com/petruchio/bingo/ManageAdsController.java
